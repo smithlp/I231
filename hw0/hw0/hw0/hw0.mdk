@@ -1,0 +1,97 @@
+Title         : Homework 0
+Title Note    :Due on Sept 7 Wednesday
+Author        :Logan Smith
+Email         :smithlp@umail.iu.edu
+
+[TITLE]
+
+# Basic Text Typewriting
+
+Here is a list:
+
+* Item 1
+* Item 2
+* Item 3
+* Subscripting: Black~pit~; superscripting: Blue^sky^
+
+This is a **Boldface words**. Newly introduced notion will be emphasized in italic font such as
+*group theory*. We could also add boldface to it, e.g., ***group theory***.
+
+Mathematics can be inlined like $E = mc^2$. Or, they can be elegantly presented in standalone
+blocks like below:
+
+~ Equation { #euler; caption:"Euler's formula" }
+e = \lim_{n\to\infty} \left( 1 + \frac{1}{n} \right)^n
+~
+
+The above theorem can be referenced as Equation [#euler]. We may prove it as a therom:
+
+**Theorem 1.** (Euler's theorem)
+If $n$ and $a$ are positive integers and $gcd(n,a) = 1$, then
+~ Equation
+a^{\phi(n)}\equiv1 \mod n
+~ 
+
+# Basics of typesetting code
+Below is a Javascript program snippet
+``` javascript
+  function hello() {
+  return "hello world!"
+}
+  ```
+Here is the Java code we mentioned in the first lecture:
+  ``` java
+    int total = 0;
+  for (int i = 1; i <= 10; i++)
+    total = total + i;
+    ```
+And typing up Haskell is as easy:
+``` haskell
+f :: [Int] -> [Int]
+f []     = []
+f (x:xs) = f ys ++ [x] ++ f zs
+  where
+    ys = [a | a  xs, a  x]
+    zs = [b | b  xs, b > x]
+    ```
+**Note.** The syntax highlighting works in the PDF output too.
+# Practice Save and Load.
+Synchronize and Pull your ongoing work (from github) as you are editing it.
+# More Reading
+Read Section 3 and 4 of Madoko reference manual. Describe two of your favorite features that we didn't mention in class.
+
+When using lists you can make sublists with " -"
+
+* Item1
+  - sub item 1
+
+Tables are also very useful
+
+| name    | price |
+|:--------|-------|
+|shake    |$5     |
+|smoothie |$3     |
+
+# Hands-On
+Install the Haskell platform and try out examples we talked in class. Note down two of your favorite trials (you are especially encouraged to try out things we haven't talked about in class). You can copy the command line text-scripts and paste them between two lines of (identical number of) consecutive backquotes. 
+$ ghci
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude λ> 
+
+If you want nicer formatting, you could use
+
+$ ghci\
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help\
+Prelude λ>reverse "hello"\
+"olleh"\
+Prelude> product\
+ [1,2,3]\
+6\
+Prelude> 
+{color: white; \
+background-color: black} 
+
+# Submit
+Generate html and pdf files to submit along with your mdk file through Canvas.
+
+
