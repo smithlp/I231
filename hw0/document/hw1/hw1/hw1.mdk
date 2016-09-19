@@ -1,0 +1,213 @@
+Title         : Homework 1
+Title Note:   Due on Sept 21 Wednesday
+Author        : Logan Smith
+Email         :smithlp@umail.iu.edu
+
+
+[TITLE]
+
+# Induction on Integers
+Prove that $\forall n \in \mathbb{N}$
+~ Equation
+3+3^2+ \cdots + 3^n = \frac{3^{n+1}-3}2
+~
+
+**Proof:**
+
+**Base Step:** If n = 1
+~ Math
+LHS = 3^1\
+~
+~ Math
+LHS = 3
+~
+~ Math
+RHS = \frac{3^{1+1} - 3}2
+~
+~ Math
+RHS = \frac{9 - 3}2
+~
+~ Math
+RHS = \frac{6}2
+~
+~ Math
+RHS = 3
+~
+~ Math
+LHS = RHS
+~
+**Inductive Hypothesis:**
+
+For a given $k$, 
+
+$3+3^2+ \cdots + 3^n = \frac{3^{n+1}-3}2$
+
+
+holds for all $n<= k$
+
+**Induction Step:**
+
+When $n = k + 1$
+
+~Math
+LHS = 3+3^2+ \cdots 3^k + 3^{k+ 1}
+~
+~Math
+RHS = \frac{3^{k+1+1}-3}2
+~
+~Math
+LHS = \frac{3^{k+1} - 3}2 + 3^{k+1}
+~
+~ Math
+LHS = \frac{3^{k+1} - 3}2 + \frac{2(3^{k+1})}2
+~
+~ Math
+LHS = \frac{2(3^{k+1}) + 3^{k+1} - 3}2
+~
+~ Math
+LHS = \frac{3(3^{k+1}) - 3}2
+~
+~ Math
+LHS = \frac{3^{k+1+1}-3}2
+~
+~ Math
+LHS = RHS
+~
+#Structural Induction
+A set $S$ is defined as follows:
+
+(1) $ 2 \in S$ 
+
+(2) if $x,y \in S$, then $2(x + y) \in S$.
+
+(3) if $x, y \in S$, then $xy \in S$.
+
+Prove that if $x \in S$ and $x \not= 2$, then $x$ is divisible by 4.
+
+**Proof:**
+
+
+#$\lambda$-Calculus
+
+Reduce the following $\lambda$-terms to their normal form:
+
+(1) $(\lambda$$abc.cba)zz($$\lambda$$xy.x).$
+
+(2)$(\lambda$$z.z)($$\lambda$$z.zz)($$\lambda$$z.zy).$
+
+(3)$(\lambda$$y.(($$\lambda$$x.y(xx))(\lambda$$x.y(xx))))($$\lambda$$x.x)$
+
+**Answer:**
+
+(1)$(\lambda$$abc.cba)zz($$\lambda$$xy.x).$
+
+$\beta$ $\lambda$$c.zzc($$\lambda$$xy.x)$
+
+$\beta$ $zz($$\lambda$$xy.x)$
+
+(2)$(\lambda$$z.z)($$\lambda$$z.zz)($$\lambda$$z.zy).$
+
+$\beta$$(\lambda$$z.z)($$\lambda$$z.zy)z$
+
+$\beta$$(\lambda$$z.z)zy$
+
+$\beta$$zy$
+
+(3)$(\lambda$$y.(($$\lambda$$x.y(xx))(\lambda$$x.y(xx))))($$\lambda$$x.x)$
+
+$\beta$ $(\lambda$$x.y(xx))$$(\lambda$$x.y(xx))$
+
+$\beta$ $(\lambda$$x.y(xx))$$yx$
+
+$\beta$$yxyx$
+
+
+#Operator Precedence and Associativity
+What does 3 @@ 5 @@ 7 + 1 evaluate to under the following three definitions? Explain
+
+(1)
+~framed
+```haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixl 3 @@
+(@@) = multThenInc
+  ```
+~
+
+(2)
+
+~framed
+```haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixr 3 @@
+(@@) = multThenInc
+```
+~
+
+(3)
+
+~framed
+```haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixl 7 @@
+(@@) = multThenInc
+```
+~
+
+(4)
+
+~ framed
+```haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixr 7 @@
+(@@) = multThenInc
+```
+~
+
+(5)
+~ framed
+```haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infix 5 @@
+(@@) = multThenInc
+```
+~
+
+**Answers:**
+
+(1)
+```haskell
+3@@5@@7 + 1 -> 3@@5@@8 -> 16@@8 -> 129
+```
+
+(2)
+```haskell
+3@@5@@7 + 1 -> 3@@5@@8 -> 3@@41 -> 124
+  ```
+(3)
+```haskell
+3@@5@@7 + 1 -> 16@@7 + 1 -> 113 + 1 -> 114
+```
+
+(4)
+
+```haskell
+3@@5@@7 + 1 -> 3@@36 + 1 -> 109 + 1 -> 110
+```
+
+(5)
+
+```haskell
+3@@5@@7 + 1 -> error
+```
+
