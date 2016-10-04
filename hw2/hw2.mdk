@@ -1,0 +1,173 @@
+Title         : Homework 2
+Title Note:   Due on Oct 5 Wednesday
+Author        : Logan Smith
+Email         :smithlp@umail.iu.edu
+
+
+[TITLE]
+
+#What are the types of the following values?
+a. [’a’,’b’,’c’] :: [Char]
+b. (’a’,’b’,’c’) :: (Char, Char, Char)
+c. [(False,’0’),(True,’1’)] :: [(Bool, Int)]
+d. ([False,True],[’0’,’1’]) :: ([Bool], [Int])
+e. [tail,init,reverse] :: [[a] -> [a]]
+
+#What are the types of the following functions?
+a. second xs = head (tail xs) :: [a] -> a
+b. swap (x,y) = (y,x) :: (t1, t2) -> (t2, t1)
+c. pair x y = (x,y) :: t1 -> t2 -> (t1,t2)
+d. double x = x*2 ::Num a => a -> a
+e. palindrome xs = reverse xs == xs :: Eq a => [a] -> Bool
+f. twice f x = f (f x) :: (t -> t) -> t -> t
+
+#Types and Typeclasses
+a. What functions define the typeclasses Real and Integral, respectively? Read the documentation (find them either through Hayoo or Hoogle) of these functions and try invoking each of them in ghci. Show your trials and explain in English what the functions do.
+
+**Real**
+
+1. toRational :: a -> Rational
+
+takes type a which belongs to typeclass Real and returns a Rational
+```haskell
+Prelude> toRational 22/7
+22 % 7
+```
+**Integral**
+
+1. quot :: a -> a -> a
+
+returns the quotient rounding to 0
+``` haskell
+Prelude> quot 5 3
+1
+Prelude> quot (-10) 4
+-2
+```
+2. rem :: a -> a -> a
+
+returns the remainder using this function (x `quot` y)*y + (x `rem` y) == x
+```haskell
+Prelude> rem 5 3
+2
+Prelude> rem (-5) 3
+-2
+Prelude> rem 5 (-3)
+2
+Prelude> rem (-5) (-3)
+-2
+```
+
+3. div :: a -> a -> a
+
+returns the quotient rounding to negative infinity
+```haskell
+Prelude> quot 5 3
+1
+Prelude> quot (-10) 4
+-3
+```
+
+4. mod :: a -> a -> a
+returns the remainder using this function (x `div` y)*y + (x `mod` y) == x
+```haskell
+Prelude> mod 5 3
+2
+Prelude> mod (-5) 3
+1
+Prelude> mod 5 (-3)
+-1
+Prelude> mod (-5) (-3)
+-2
+```
+5. quotRem :: a -> a -> (a, a)
+
+returns the quot then the rem in a tuple
+```haskell
+Prelude> quotRem 5 3
+(1,2)
+```
+6. divMod :: a -> a -> (a, a)
+
+returns the div then the mod in a tuple
+```haskell
+Prelude> divMod 5 3
+(1,2)
+```
+7. toInteger :: a -> Integer
+
+converts Integrals into Integers
+
+```haskell
+Prelude> x = mod 5 3
+Prelude> x
+2
+Prelude> :info x
+x :: Integral a => a    -- Defined at <interactive>:36:1
+Prelude> y = toInteger x
+Prelude> :info y
+y :: Integer
+```
+
+b. What are the example types that are instances of Real and Integral, respectively. Try invoking the Real and Integral functions on values of the example types that you give.
+
+Integer and Int types in the Integral class. The Integral class is a subclass of Real so Integer and Int are also Real.
+
+c. Define a function f as follows:
+``` haskell
+  f x = toRational $ rem x 5
+  ```
+  i. What is f's type?
+  
+  f :: Integral a => a -> Rational
+  
+  ii. Describe how would your Haskell compiler/interpreter infer f's type. 
+  
+  The interpreter knows rem is Integral a => a -> a -> a. It also knows toRational is Real a => a -> Rational. rem x 5 is evaluated first which gives an Integral then toRational is evaluated which gives a Rational
+
+
+#Functions
+
+a. Redefine the following version of (&&) using conditionals rather than patterns:
+
+```haskell
+True && True = True
+_    && _    = False
+
+
+&& :: Bool -> Bool -> Bool
+&& x y = if x == False then False else
+     if y == False then False else True
+
+
+```
+b. Give three possible definitions for the logical or operator (||) using pattern matching.
+```haskell
+ True || True = True
+ True || False = True
+False || True = True
+False || False = False
+
+True  ||  _ = True
+_     || True = True
+False || False = False
+
+False || False = False
+_     ||  _ = True
+
+```
+
+c. What does the init function in Prelude1 do? Define init in terms of functions length and take.
+
+init takes a list and returns it without the last value. 
+
+```haskell
+init             :: [a] -> [a]  
+init [x]         =  []  
+init (x:xs)      =  x : init xs
+```
+
+
+#List Comprehension
+
+
