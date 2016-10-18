@@ -1,0 +1,201 @@
+
+Title         : Homework 3
+Title Note:   Due on Oct 19 Wednesday
+Author        : Logan Smith
+Email         :smithlp@umail.iu.edu
+
+
+[TITLE]
+
+# Define the following library functions using recursion:
+a. Produce a list with n identical elements:
+``` haskell
+  replicate :: Int -> a -> [a]
+replicate n x = undefined
+```
+**Answer**
+```haskell
+  replicate' :: Int -> a -> [a]
+replicate' 0 _ = []
+replicate' n x = x:replicate' (n-1) x
+```
+b. Select the nth element of a list:
+``` haskell
+  (!!) :: [a] -> Int -> a
+xs !! i = undefined
+```
+c. Decide if a value is an element of a list:
+``` haskell
+  elem :: Eq a => a -> [a] -> Bool
+  ```
+**Answer**
+```haskell
+  elem :: Eq a => a -> [a] -> Bool
+  elem n [] = False
+  elem n (x:xs)
+       | x == n = True
+       | otherwise = elem n xs
+            ```
+  
+#Merge and Sort
+a. Define a recursive function
+```haskell
+  merge :: Ord a => [a] -> [a] -> [a]
+  ```
+  
+that merges two sorted lists of values to give a single sorted list. For example:
+
+>Prelude λ&gt; merge [2,5,6]\ [1,3,4]\
+[1,2,3,4,5,6]
+{color: white; \
+background-color: black} 
+**Answer**
+```haskell
+merge :: Ord a => [a] -> [a] -> [a]
+merge x [] = x
+merge [] y = y
+merge (x:xs) (y:ys)
+     | y < x = y : merge ys (x:xs)
+     | otherwise = x : merge xs (y:ys)
+```
+
+b. Define a recursive function
+```haskell
+  msort :: Ord a => [a] -> [a]
+  ```
+that implements merge sort, which can be specified by the following two rules:
+
+* Lists of length 1 are already sorted;
+* Other lists can be sorted by sorting the two halves and merging the resulting lists.
+ 
+**Answer**
+```haskell
+merge :: Ord a => [a] -> [a] -> [a]
+merge x [] = x
+merge [] y = y
+merge (x:xs) (y:ys)
+     | y < x = y : merge ys (x:xs)
+     | otherwise = x : merge xs (y:ys)
+```
+```haskell
+split :: [a] -> ([a], [a])
+split xs = (take n xs, drop n xs)
+    where n = (length xs) `div` 2 
+ ```
+ ```haskell
+msort :: (Ord a) => [a] -> [a]
+msort [] = []
+msort [x] = [x]
+msort xs = merge (msort left) (msort right)
+    where (left, right) = split xs
+    ```
+
+# Higher-order functions
+
+a. Express the comprehension
+
+```haskell
+  [f x | x  xs, p x] 
+  ```
+
+using the functions map and filter.
+
+**Answer**
+```haskell
+(map f . filter p) xs
+```
+b. Redefine map f and filter p using foldr. (Hint: What is the type of map f? And how about the type of filter p?)
+
+**Answer**
+```haskell
+map' :: (a -> b) -> [a] -> [b]
+map' f [] = []
+map' f xs = foldr (\x xs -> (f x):xs) [] xs
+```
+```haskell
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' p [] = []
+filter' p xs = foldr (\x xs -> if p x then x:xs else xs ) [] xs
+  ```
+# Number representations and Arithmetics
+a. Convert (8729)~12~ into its octet (base-8) representation.
+
+**Answer**
+
+$(8 * 12^3) + (7 * 12^2) + (2 * 12) + 9 = (14865)$~10~
+
+
+$14865/8 = 1858 rem = 1$
+
+$1858/8 = 232 rem = 2$
+
+$232/8 = 29 rem = 0$
+
+$29/8 = 3 rem = 5$
+
+(35021)~8~
+
+
+
+
+
+
+
+
+
+
+
+b. Write a haskell function that converts any base-8 (octet) number into its base-6 (senary) form.
+```haskell
+octet2senary :: [Int] -> [Int]
+octet2senary xs = undefined
+```
+For example, to obtain the senary representation of (345)~8~, you can call
+
+>Prelude λ&gt; octet2senary [3,4,5]\
+[1,0,2,1]
+{color: white; \
+background-color: black} 
+
+to get (1021)~6~.
+
+**Answer**
+```haskell
+toDecimal :: Int -> [Int] -> Int
+toDecimal base = foldr (\x y -> x + base*y) 0 
+```
+```haskell
+toBaseb :: Int -> Int -> [Int]
+toBaseb base n = [x `mod` base | x <- takeWhile (>0) $ iterate (`div` base) n]  
+```
+```haskell
+transBases :: Int -> Int -> [Int] -> [Int]
+transBases b1 b2 n = toBaseb b2 $ toDecimal b1 n 
+```
+```haskell
+octet2senary :: [Int] -> [Int]
+octet2senary xs = reverse (transBases 10 6 [toDecimal 8 (reverse xs)])
+```
+c. Write a Haskell function that adds two base-8 numbers represented as lists. For example, to add (6273)~8~ and (7712)~8~ in ghci, you type
+
+>Prelude λ&gt; addoctets [6,2,7,3]\ [7,7,1,2]\
+[1,6,1,8,5]
+{color: white; \
+background-color: black} 
+
+You can use the following code stub to get yourself started.
+```haskell
+  addoctets :: [Int] -> [Int] ->[Int]
+  addoctets = undefined
+```
+#Bonus Problems
+* **[10 points]** Write a Haskell function that multiplies two base-b numbers.
+```haskell
+  mult :: Int -> [Int] -> [Int] ->[Int]
+mult = undefined
+```
+* **[10 points]** Write a Haskell function that divides two base-b numbers.
+```haskell
+  divmod :: Int -> [Int] -> [Int] ->[Int]
+divmod = undefined
+```
