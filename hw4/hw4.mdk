@@ -1,0 +1,48 @@
+
+Title         : Homework 4
+Title Note:   Due on Nov 4 Friday
+Author        : Logan Smith
+Email         :smithlp@umail.iu.edu
+
+
+[TITLE]
+
+# Counting
+An urn contains 15 red, distinctly labeled, balls, and 10 white, distinctly labeled balls. 5 balls are picked from the urn. a. How many different samples are possible?
+
+a. How many different samples are possible?
+b. How many samples contain only red balls?
+c. How many samples contain 3 red balls and 2 white balls?
+
+# Conditional Probability and Bayes Theorem
+Given two urns: Urn A has 10 gold coins and 5 silver coins while Urn B has 2 gold coins and 8 silver coins. Alice first randomly picks an urn then randomly pick a coin from the urn. It turns out that the coin is golden. She then puts the coin back into the urn and then randomly draws another coin and it is still a golden one. What is the probability that it was Urn A being picked in the first place?
+
+# Random Variables
+Randomly throwing 100 balls into 20 bins, how many bins (on average) will end up empty?
+
+#Modulo Arithmetic and Primes
+
+a. Compute the following numbers
+  - 2135 mod 23
+  - -2135 mod 23
+  - 2135 mod (-23)
+  - -2135 mod (-23)
+* Write a Haskell function that print the sum of the first n primes
+```haskell
+  sumOfPrimes :: Int -> Integer
+sumOfPrimes n = undefined
+```
+
+>Prelude λ&gt; sumOfPrimes 4\
+17\
+>Prelude λ&gt; sumOfPrimes 12\
+197
+{color: white; \
+background-color: black} 
+
+# Bonus Problem 1 (5 points)
+**You have to submit your haskell source code in a separate .hs file.**
+
+a. The Caeser cipher we discussed in class can only handle capital letters. Can you write a generalized Caeser in Haskell that is able to appropriately deal with upper and lower case letters, numbers, plus six basic punctuation marks including , . ' " ! ?.
+
+* Given a ciphertext encoded by your generalized Caeser cipher, how would you crack the ciphertext without knowing the key? Explain your idea and implement it in Haskell.
