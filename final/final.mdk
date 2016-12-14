@@ -1,0 +1,93 @@
+
+Title         : Final Exam
+Title Note:   noon, Dec 13 (Tuesday) – 10:00am Dec 15 (Thursday)
+Author        : Logan Smith
+Email         :smithlp@umail.iu.edu
+
+
+[TITLE]
+Take-home exam policy (**IMPORTANT**): You cannot use Internet to complete your take-home exam. You cannot collaborate with others. **We will strictly enforce the policy by starting IU Student Disciplinary Procedures on suspicious submissions. Once confirmed, the course grades for ALL involved students will be marked as “F”.**
+
+                            Sign (with Initials): LPS
+
+# [25 points] Mathematical Induction
+An urn contains 15 red, distinctly labeled, balls, and 10 white, distinctly labeled balls. 5 balls are picked from the urn. a. How many different samples are possible?
+
+Prove by mathematical induction that for all positive integer $n$ that
+a . How many different samples are possible?
+
+~ Equation
+ (1+x)^n \ge 1 +nx
+ ~
+holds for all real numbers $ x > -1$
+
+**Proof:**
+
+**Base Step:** When $n=1$ , LHS = $(1+x)^1 = 1+x$, RHS = $ 1 + 1x = 1+x$ Therfore $1 + x \ge 1+x$ LHS $\ge$ RHS
+
+**Inductive Hypothesis:** $(1 + x)^n \ge 1 + nx$ holds for all real numbers $x \ge -1$.
+
+**Induction Step:** Based on the inductive hypothesis, we want to show
+the statement is true when $n=k+1$. Now we show that below:\
+LHS = $(1+x)^k+1 = (1+x)^k (1+x)$\
+LHS $\ge (1+kx)(1+x) = 1 +x + k +kx^2 = 1 + (k+1)x + kx^2$\
+RHS $\ge 1 + (k+1)x$ because $kx^2 \ge 0$/
+Therefore LHS $\ge$ RHS
+
+
+# [25 points] Number Theory
+Use Euler's theorem and Chinese Reminder theorem to calculate by hand
+~ Equation
+12^{15} mod 2016.
+~
+Please write down the detailed steps. (Hint:$2016=32x63$)
+
+$12^{15} = (2^2 x 3)^{15} = 2^{30} x 3^{15}$
+
+$2^{30} mod 2016$, $3^{15}5mod 2016$
+
+$2^{30} mod 32$, $2^{30} mod 63$, $3^{15} mod 32$, $3^{15} mod 63$
+
+$(2^5)^6 mod 32$
+
+$32^6 mod 32 = 0$
+
+
+# [25 points] Probabilities
+There are four boxes with identical appearance:
+
+* One box contains a $100 bill;
+* One other box contains a $200 bill;
+* The rest two boxes are empty.
+
+Mike gets a chance to pick one of the four boxes and be rewarded the bill in the box (if there is any).
+
+Mike decided a box and hold it in his hands. However, before opening this box, one out of the rest three boxes is opened but ends up empty. Now Mike could either
+
+a. stick with the box in his hand; or
+b. change his mind and swap his box with one of the two unopened boxes.
+
+Question:\
+(1) What is Mike's expected reward if he chooses to stick with the box in his hand?\
+
+${\frac{1} {4}}*100 + {\frac{1} {4}}*200 + {\frac{1} {4}}*0 +{\frac{1} {4}}*0 = 25+50=75$
+
+(2) What is Mike's expected reward if he chooses to swap his box with one of the two unopened boxes?\
+
+$({\frac{1} {2}}100 +{\frac{1} {2}}200){\frac{1} {3}} + ({\frac{1} {2}}100 + {\frac{1} {2}}0){\frac{1} {3}} + ({\frac{1} {2}}200 + {\frac{1} {2}}0){\frac{1} {3}}$
+
+$ = 150{\frac{1} {3}} + 50{\frac{1} {3}} + 100{\frac{1} {3}} = {\frac{300} {3}} = 100$
+
+(3) Assume Mike decided to swap the box in his hands with one of the other two unopened boxes but ended up getting nothing. What is the probability that the box he originally chose actually contains the $200 bill?\
+
+${\frac{1} {3}}$
+
+#[25 points] Entropy
+Write a Haskell function to estimate the entropy of English using Delaration of Independence. Assume a 26-letter alphabet thus you can ignore capitalizations. Consider making it easier for using your function definition to answer these series questions. **You need to submit the** .hs **file for this problem.**
+
+* What is the per letter entropy when considering only the frequencies of single letters?
+* What is the per letter entropy when considering only the frequencies of two-letter ligatures?
+* How about the per letter entropy when considering three-letter ligatures?
+* How about the per letter entropy when considering $n$-letter ligatures?
+
+Hint: You would find some library functions in Data.List and Data.Char (such as sort and tails) helpful in solving this problem. Try to start your Haskell coding from [entropy.hs](http://homes.soic.indiana.edu/yh33/Teaching/I231-2016/code/entropy.hs).
